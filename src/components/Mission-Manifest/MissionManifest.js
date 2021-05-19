@@ -42,6 +42,7 @@ const MissionManifest = (props) => {
         <MaxSol maxSol={items.photo_manifest.max_sol} />
         <MaxDate maxDate={items.photo_manifest.max_date} />
         <TotalPhotos totalPhotos={items.photo_manifest.total_photos} />
+        <br />
       </div>
     )
   }
