@@ -9,7 +9,6 @@ import Navbar from './components/Navbar/Navbar'
 
 function App() {
   return (
-    <div className="App">
     <Router>
       <Navbar />
       <Switch>
@@ -19,7 +18,6 @@ function App() {
         <Route exact path="/opportunity" component={Opportunity} />
       </Switch>
     </Router>
-    </div>
   );
 }
 
