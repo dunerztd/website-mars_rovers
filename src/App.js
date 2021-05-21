@@ -4,8 +4,9 @@ import Home from './pages/Home'
 import Curiosity from './pages/Curiosity'
 import Spirit from './pages/Spirit'
 import Opportunity from './pages/Opportunity'
-
 import Navbar from './components/Navbar/Navbar'
+
+
 
 function App() {
   return (
