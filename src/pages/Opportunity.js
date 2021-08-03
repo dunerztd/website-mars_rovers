@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import MissionManifest from '../components/Mission-Manifest/MissionManifest'
 import RoverHeading from '../components/Rover-Heading/RoverHeading'
 import Search from '../components/Search/Search'
+import Main from '../components/Main/Main'
 
 import './opportunity.css'
 
@@ -11,6 +12,7 @@ const Opportunity = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const [dateInput, setDateInput] = useState()
 
   const rover = 'Opportunity'
 
@@ -40,11 +42,18 @@ const Opportunity = (props) => {
           items={items}  
         />
         <div className="search">
-          <Search items={items}  />
+          <Search
+            items={items}
+            dateInput={dateInput}
+            setDateInput={setDateInput}
+          />
         </div>
       </div>
       <div className="main"><br />
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum temporibus aspernatur deserunt. Iste alias debitis aspernatur, architecto ratione reprehenderit voluptatum doloremque quisquam officiis tenetur ducimus obcaecati doloribus quae praesentium nisi.
+        <Main
+          dateInput={dateInput}
+          rover='Opportunity'
+        />
       </div>
     </div>
   )

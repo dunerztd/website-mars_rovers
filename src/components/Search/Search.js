@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 import './search.css'
 
-const Search = ({ items }) => {
+const Search = ({ items, dateInput, setDateInput }) => {
 
-  const [dateInput, setDateInput] = useState()
   const [search, setSearch] = useState([])
+
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+    setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInput) )
+  }},[dateInput])
 
   const handleChange = (event) => {
     setDateInput(event.target.value)
@@ -31,7 +39,7 @@ const Search = ({ items }) => {
               <div>
                 Cameras: 
                   {search[0].cameras.map((number) =>
-                        `${number}, `
+                        ` ${number},`
                   )}
               </div>
             </div>
@@ -39,28 +47,27 @@ const Search = ({ items }) => {
       }
     }
 
-  const HideSearchBar = () => {
-    var coll = document.getElementsByClassName("search-bar");
-    var i;
+  // const HideSearchBar = () => {
+  //   var coll = document.getElementsByClassName("search-bar");
+  //   var i;
 
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    }
-  }
+  //   for (i = 0; i < coll.length; i++) {
+  //     coll[i].addEventListener("click", function() {
+  //       this.classList.toggle("active");
+  //       var content = this.nextElementSibling;
+  //       if (content.style.display === "block") {
+  //         content.style.display = "none";
+  //       } else {
+  //         content.style.display = "block";
+  //       }
+  //     });
+  //   }
+  // }
 
   return (
     <div>
-      <div className="search-bar" onClick={HideSearchBar}>
+      <div className="search-bar" >
         <input type="date" value={dateInput} onChange={handleChange} />
-        <button onClick={handleSubmit}>Submit</button>
       </div>
       <div className="search-bar-content" >
         <SearchResults />
