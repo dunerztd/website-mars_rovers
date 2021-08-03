@@ -18,10 +18,6 @@ const Search = ({ items, dateInput, setDateInput }) => {
   const handleChange = (event) => {
     setDateInput(event.target.value)
   }
-
-  const handleSubmit = () => {
-    setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInput) )
-  }
   
   const SearchResults = () => {
 
