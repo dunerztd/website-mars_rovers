@@ -18,7 +18,8 @@ const Main = ({ dateInput, rover }) => {
         .then(res => res.json())
         .then(
           (result) => {
-            setItems(result);
+            const filtered = filterResultsByCategory(result)
+            setItems(filtered)
             setIsLoaded(true);
           })
           .catch((error) => {
@@ -29,16 +30,37 @@ const Main = ({ dateInput, rover }) => {
     }
   }, [dateInput, rover])
 
+  const filterResultsByCategory = (result) => {
+
+    let filteredResults = []
+    const listOfCameras = ['Front Hazard Avoidance Camera', 'Rear Hazard Avoidance Camera', 'Navigation Camera', 'Panoramic Camera', 'Miniature Thermal Emission Spectrometer (Mini-TES)']
+
+    for (const camera of listOfCameras) {
+
+      const filtered = result.photos.filter((photo) => photo.camera.full_name == camera )
+
+      if (filtered.length !== 0) {
+        filteredResults.push({ [camera]: filtered })
+      }
+    }
+
+    return filteredResults
+  }
+
+  
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return (
-      <div>
-        {items.photos.map((photo) =>
-          <img src={photo.img_src} className="photo-box" alt=""></img>
-        )}
+    return items.map(camera =>
+       <div>
+        <h1>{Object.keys(camera)}</h1>
+        
+          {camera[Object.keys(camera)].map(photo =>
+            <img src={photo.img_src} className="photo-box" alt=""></img>
+          )}
+
       </div>
     )
   }

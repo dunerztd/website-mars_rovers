@@ -12,7 +12,7 @@ const Search = ({ items, dateInput, setDateInput }) => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-    setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInput) )
+      setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInput) )
   }},[dateInput])
 
   const handleChange = (event) => {
@@ -23,7 +23,7 @@ const Search = ({ items, dateInput, setDateInput }) => {
 
     if (search.length === 0) {
       return ( 
-        <div><br />66 hours, 19 minutes right ascension. 14 degrees, 58 minutes declination...... No sighting</div> 
+        <div><br />6 hours, 19 minutes right ascension. 14 degrees, 58 minutes declination...... No sighting</div> 
         )
       } else {
           return (
