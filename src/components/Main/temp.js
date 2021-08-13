@@ -21,3 +21,10 @@
        return <h1>{Object.keys(photo)}</h1>
       })}</div>
     )
+
+
+    .map((camera) => camera.img_src)
+
+              {camera[Object.keys(camera)].map(photo =>
+            <a href={photo} target="_blank" rel="noreferrer"><img src={photo} className="photo-box" alt=""></img></a>
+          )}

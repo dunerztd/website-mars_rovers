@@ -37,17 +37,16 @@ const Main = ({ dateInput, rover }) => {
 
     for (const camera of listOfCameras) {
 
-      const filtered = result.photos.filter((photo) => photo.camera.full_name == camera )
+      const photoUrls = result.photos.filter((photo) => photo.camera.full_name === camera).map((camera) => camera.img_src)
 
-      if (filtered.length !== 0) {
-        filteredResults.push({ [camera]: filtered })
+      if (photoUrls.length !== 0) {
+        filteredResults.push({ [camera]: photoUrls })
       }
     }
 
     return filteredResults
   }
 
-  
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -57,9 +56,7 @@ const Main = ({ dateInput, rover }) => {
        <div>
         <h1>{Object.keys(camera)}</h1>
         
-          {camera[Object.keys(camera)].map(photo =>
-            <img src={photo.img_src} className="photo-box" alt=""></img>
-          )}
+        {camera[Object.keys(camera)].map(photo => <a href={photo} target="_blank" rel="noreferrer"><img src={photo} className="photo-box" alt=""></img></a>)}
 
       </div>
     )
