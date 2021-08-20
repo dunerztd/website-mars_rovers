@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 
 import './main.css'
 
-const Main = ({ dateInput, rover }) => {
+const Main = ({ dateInputOnSubmit, rover }) => {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,7 +14,7 @@ const Main = ({ dateInput, rover }) => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${dateInput}&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K`)
+      fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${dateInputOnSubmit}&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K&page=1`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -28,16 +28,16 @@ const Main = ({ dateInput, rover }) => {
           }
         )
     }
-  }, [dateInput, rover])
+  }, [dateInputOnSubmit, rover])
 
   const filterResultsByCategory = (result) => {
 
     let filteredResults = []
-    const listOfCameras = ['Front Hazard Avoidance Camera', 'Rear Hazard Avoidance Camera', 'Navigation Camera', 'Panoramic Camera', 'Miniature Thermal Emission Spectrometer (Mini-TES)']
+    const listOfCameras = ['Front Hazard Avoidance Camera', 'Rear Hazard Avoidance Camera', 'Navigation Camera', 'Panoramic Camera', 'Mast Camera', 'Chemistry and Camera Complex', 'Mars Hand Lens Imager', 'Mars Descent Imager', 'Miniature Thermal Emission Spectrometer (Mini-TES)']
 
     for (const camera of listOfCameras) {
 
-      const photoUrls = result.photos.filter((photo) => photo.camera.full_name === camera).map((camera) => camera.img_src)
+      const photoUrls = result.photos.filter((photo) => photo.camera.full_name === camera).map((x) => x.img_src)
 
       if (photoUrls.length !== 0) {
         filteredResults.push({ [camera]: photoUrls })

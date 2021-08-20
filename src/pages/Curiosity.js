@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import MissionManifest from '../components/Mission-Manifest/MissionManifest'
 import RoverHeading from '../components/Rover-Heading/RoverHeading'
 import Search from '../components/Search/Search'
+import Main from '../components/Main/Main'
 
 import './curiosity.css'
 
@@ -11,6 +12,7 @@ const Curiosity = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const [dateInputOnSubmit, setDateInputOnSubmit] = useState()
 
   const rover = 'Curiosity'
 
@@ -37,13 +39,21 @@ const Curiosity = () => {
           rover='Curiosity'
           error={error}
           isLoaded={isLoaded}
-          items={items} 
+          items={items}
         />
         <div className="search">
-          <Search items={items} />
+           <Search
+            items={items}
+            dateInputOnSubmit={dateInputOnSubmit}
+            setDateInputOnSubmit={setDateInputOnSubmit}
+          />
         </div>
       </div>
       <div className="main"><br />
+        <Main
+          dateInputOnSubmit={dateInputOnSubmit}
+          rover='Curiosity'
+        />
       </div>
     </div>
   )

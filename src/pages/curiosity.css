@@ -3,11 +3,11 @@
 }
 
 .side-bar {
-  width: 500px;
+  width: 1000px;
 }
 
 .main {
-  width: 100%;
+  width: 100px;
 }
 
 @media all and (max-width: 600px) {

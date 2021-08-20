@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import MissionManifest from '../components/Mission-Manifest/MissionManifest'
 import RoverHeading from '../components/Rover-Heading/RoverHeading'
 import Search from '../components/Search/Search'
+import Main from '../components/Main/Main'
 
 import './spirit.css'
 
@@ -11,6 +12,7 @@ const Spirit = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const [dateInput, setDateInput] = useState()
 
   const rover = 'Spirit'
 
@@ -40,11 +42,18 @@ const Spirit = () => {
           items={items} 
         />
         <div className="search">
-          <Search items={items} />
+          <Search
+            items={items}
+            dateInput={dateInput}
+            setDateInput={setDateInput}
+          />
         </div>
       </div>
       <div className="main"><br />
-
+      <Main
+          dateInput={dateInput}
+          rover='Spirit'
+        />
       </div>
     </div>
   )

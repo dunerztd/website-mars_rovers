@@ -2,9 +2,10 @@ import { useState, useEffect, useRef} from 'react'
 
 import './search.css'
 
-const Search = ({ items, dateInput, setDateInput }) => {
+const Search = ({ items, dateInputOnSubmit, setDateInputOnSubmit }) => {
 
   const [search, setSearch] = useState([])
+  const [dateInput, setDateInput] = useState()
 
   const isInitialMount = useRef(true);
 
@@ -12,11 +13,15 @@ const Search = ({ items, dateInput, setDateInput }) => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInput) )
-  }},[dateInput])
+      setSearch( items.photo_manifest.photos.filter(x => x.earth_date === dateInputOnSubmit) )
+  }},[dateInputOnSubmit])
 
   const handleChange = (event) => {
     setDateInput(event.target.value)
+  }
+
+  const handleSubmit = () => {
+    setDateInputOnSubmit(dateInput)
   }
   
   const SearchResults = () => {
@@ -32,12 +37,7 @@ const Search = ({ items, dateInput, setDateInput }) => {
               <div>Sol: {search[0].sol}</div>
               <div>Earth Date: {search[0].earth_date}</div>
               <div>Total Photos: {search[0].total_photos}</div>
-              <div>
-                Cameras: 
-                  {search[0].cameras.map((number) =>
-                        ` ${number},`
-                  )}
-              </div>
+              <div>Cameras: {search[0].cameras.join(', ')}</div>
             </div>
           )
       }
@@ -62,9 +62,10 @@ const Search = ({ items, dateInput, setDateInput }) => {
 
   return (
     <div>
-      <div className="search-bar" >
-        <input type="date" value={dateInput} onChange={handleChange} />
-      </div>
+        <div className="search-bar" >
+          <input type="date" value={dateInput} onChange={handleChange} />
+          <input type="submit" value="Submit" onClick={handleSubmit} />
+        </div>
       <div className="search-bar-content" >
         <SearchResults />
       </div>
