@@ -5,16 +5,16 @@ import RoverHeading from '../components/Rover-Heading/RoverHeading'
 import Search from '../components/Search/Search'
 import Main from '../components/Main/Main'
 
-import './opportunity.css'
+import './perseverance.css'
 
-const Opportunity = () => {
+const Perseverance = () => {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [dateInputOnSubmit, setDateInputOnSubmit] = useState()
 
-  const rover = 'Opportunity'
+  const rover = 'Perseverance'
 
     useEffect(() => {
     fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K`)
@@ -34,9 +34,9 @@ const Opportunity = () => {
   return (
     <div className="container">
       <div className="side-bar">
-        <RoverHeading roverHeading='Opportunity'/>
+        <RoverHeading roverHeading='Perseverance'/>
         <MissionManifest 
-          rover='Opportunity'
+          rover='Perseverance'
           error={error}
           isLoaded={isLoaded}
           items={items}
@@ -52,11 +52,11 @@ const Opportunity = () => {
       <div className="main"><br />
         <Main
           dateInputOnSubmit={dateInputOnSubmit}
-          rover='Opportunity'
+          rover='Perseverance'
         />
       </div>
     </div>
   )
 }
 
-export default Opportunity
+export default Perseverance

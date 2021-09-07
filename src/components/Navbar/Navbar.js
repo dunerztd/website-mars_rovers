@@ -18,6 +18,10 @@ const Navbar = () => {
       <NavLink to="/Spirit">
         Spirit
       </NavLink>
+      <span> | </span>
+      <NavLink to="/Perseverance">
+        Perseverance
+      </NavLink>
     </nav>
   )
 }

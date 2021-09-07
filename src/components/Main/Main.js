@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ReactPaginate from 'react-paginate'
 
 import './main.css'
 
@@ -8,43 +9,73 @@ const Main = ({ dateInputOnSubmit, rover }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  const [perPage, setPerPage] = useState(25)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [paginatedData, setPaginatedData] = useState([])
+  const [pageCount, setPageCount] = useState(0)
+
   const isInitialMount = useRef(true);
 
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${dateInputOnSubmit}&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K&page=1`)
+      fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${dateInputOnSubmit}&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K`)
         .then(res => res.json())
-        .then(
-          (result) => {
-            const filtered = filterResultsByCategory(result)
-            setItems(filtered)
-            setIsLoaded(true);
-          })
-          .catch((error) => {
-            setError(error);
-            setIsLoaded(true);
-          }
-        )
+        .then((result) => {
+          setItems(result)
+          paginateData(result)
+          setIsLoaded(true)
+        })
+        .catch((error) => {
+          setError(error);
+          setIsLoaded(true);
+        })
     }
   }, [dateInputOnSubmit, rover])
 
-  const filterResultsByCategory = (result) => {
+  const paginateData = (result) => {
 
-    let filteredResults = []
-    const listOfCameras = ['Front Hazard Avoidance Camera', 'Rear Hazard Avoidance Camera', 'Navigation Camera', 'Panoramic Camera', 'Mast Camera', 'Chemistry and Camera Complex', 'Mars Hand Lens Imager', 'Mars Descent Imager', 'Miniature Thermal Emission Spectrometer (Mini-TES)']
+    const slice = result.photos.slice(0, 0 + perPage)
+    
+    setPaginatedData(slice)
+    setPageCount(Math.ceil((result.photos).length / perPage))
+  }
 
-    for (const camera of listOfCameras) {
+  const photoGallery = () => {
+    let prev = ''
 
-      const photoUrls = result.photos.filter((photo) => photo.camera.full_name === camera).map((x) => x.img_src)
+    return paginatedData.map((photo) => {
+      if (photo.camera.full_name === prev) {
 
-      if (photoUrls.length !== 0) {
-        filteredResults.push({ [camera]: photoUrls })
+        prev = photo.camera.full_name
+
+        return (
+          <a href={photo.img_src} target="_blank" rel="noreferrer"><img src={photo.img_src} className="photo-box" alt=""></img></a>
+        )
+      } else {
+
+        prev = photo.camera.full_name
+
+        return (
+          <>
+            <h1>{photo.camera.full_name}</h1>
+            
+            <a href={photo.img_src} target="_blank" rel="noreferrer"><img src={photo.img_src} className="photo-box" alt=""></img></a>
+          </>
+        )
       }
-    }
+    }) 
+  }
 
-    return filteredResults
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected
+    const offset = selectedPage * perPage
+
+    setCurrentPage(selectedPage)
+
+    const slice = items.photos.slice(offset, offset + perPage)
+    setPaginatedData(slice)
   }
 
   if (error) {
@@ -52,12 +83,21 @@ const Main = ({ dateInputOnSubmit, rover }) => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return items.map(camera =>
-       <div>
-        <h1>{Object.keys(camera)}</h1>
-        
-        {camera[Object.keys(camera)].map(photo => <a href={photo} target="_blank" rel="noreferrer"><img src={photo} className="photo-box" alt=""></img></a>)}
-
+    return (
+      <div>
+        {photoGallery()}
+        <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}/>
       </div>
     )
   }

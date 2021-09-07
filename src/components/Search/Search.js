@@ -5,7 +5,7 @@ import './search.css'
 const Search = ({ items, dateInputOnSubmit, setDateInputOnSubmit }) => {
 
   const [search, setSearch] = useState([])
-  const [dateInput, setDateInput] = useState()
+  const [dateInput, setDateInput] = useState('')
 
   const isInitialMount = useRef(true);
 

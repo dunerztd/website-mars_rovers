@@ -12,11 +12,11 @@ const Spirit = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [dateInput, setDateInput] = useState()
+  const [dateInputOnSubmit, setDateInputOnSubmit] = useState()
 
   const rover = 'Spirit'
 
-  useEffect(() => {
+    useEffect(() => {
     fetch(`https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?&api_key=ZaPnrNa5wS9iCzvEvDvbrln3R3KVVMqhE785I25K`)
       .then(res => res.json())
       .then(
@@ -39,19 +39,19 @@ const Spirit = () => {
           rover='Spirit'
           error={error}
           isLoaded={isLoaded}
-          items={items} 
+          items={items}
         />
         <div className="search">
-          <Search
+           <Search
             items={items}
-            dateInput={dateInput}
-            setDateInput={setDateInput}
+            dateInputOnSubmit={dateInputOnSubmit}
+            setDateInputOnSubmit={setDateInputOnSubmit}
           />
         </div>
       </div>
       <div className="main"><br />
-      <Main
-          dateInput={dateInput}
+        <Main
+          dateInputOnSubmit={dateInputOnSubmit}
           rover='Spirit'
         />
       </div>
