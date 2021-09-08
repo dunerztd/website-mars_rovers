@@ -11,7 +11,7 @@
   outline: none;
 }
 .pagination > .active > a{
-  background-color: #47ccde ;
+  background-color: #de4779 ;
   border-color: #47ccde ;
   color: #fff;
 }
@@ -21,11 +21,8 @@
   outline: none;
   cursor: pointer;
 }
-.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-  background-color: #47ccde ;
-  border-color: #47ccde;
-  outline: none ;
-}
+
+
 .pagination > li > a, .pagination > li > span{
   color: #47ccde
 }

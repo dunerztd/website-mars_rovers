@@ -35,6 +35,7 @@ const Main = ({ dateInputOnSubmit, rover }) => {
   }, [dateInputOnSubmit, rover])
 
   const paginateData = (result) => {
+    setCurrentPage(0)
 
     const slice = result.photos.slice(0, 0 + perPage)
     
@@ -97,7 +98,9 @@ const Main = ({ dateInputOnSubmit, rover }) => {
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
           subContainerClassName={"pages pagination"}
-          activeClassName={"active"}/>
+          activeClassName={"active"}
+          forcePage={currentPage}
+          />
       </div>
     )
   }
