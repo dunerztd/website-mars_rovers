@@ -82,7 +82,9 @@ MAIN AREA
 
 - The name of the rover (curiosity in this mockup) and arrow will appear permanently at the bottom of the screen. Clicking arrow will hide/unhide mission info and photo search.
 
-![mobile mockup](./mockups/Mobile-RoverPages.jpg)
+mobile |
+---
+![mobile mockup](./mockups/Mobile-RoverPages.jpg) |
 
 ### Desktop
 
