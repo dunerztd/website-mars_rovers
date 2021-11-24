@@ -34,13 +34,15 @@ const Perseverance = () => {
   return (
     <div className="container">
       <div className="side-bar">
-        <RoverHeading roverHeading='Perseverance'/>
-        <MissionManifest 
-          rover='Perseverance'
-          error={error}
-          isLoaded={isLoaded}
-          items={items}
-        />
+        <div className="roverInfo">
+          <RoverHeading roverHeading='Perseverance'/>
+          <MissionManifest 
+            rover='Perseverance'
+            error={error}
+            isLoaded={isLoaded}
+            items={items}
+          />
+        </div>
         <div className="search">
            <Search
             items={items}

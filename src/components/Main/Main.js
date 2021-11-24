@@ -43,7 +43,7 @@ const Main = ({ dateInputOnSubmit, rover }) => {
     setPageCount(Math.ceil((result.photos).length / perPage))
   }
 
-  const photoGallery = () => {
+  const PhotoGallery = () => {
     let prev = ''
 
     return paginatedData.map((photo) => {
@@ -60,7 +60,7 @@ const Main = ({ dateInputOnSubmit, rover }) => {
 
         return (
           <>
-            <h1>{photo.camera.full_name}</h1>
+            <h3>{photo.camera.full_name}</h3>
             
             <a href={photo.img_src} target="_blank" rel="noreferrer"><img src={photo.img_src} className="photo-box" alt=""></img></a>
           </>
@@ -86,7 +86,9 @@ const Main = ({ dateInputOnSubmit, rover }) => {
   } else {
     return (
       <div>
-        {photoGallery()}
+        <div className="gallery">
+          <PhotoGallery />
+        </div>
         <ReactPaginate
           previousLabel={"prev"}
           nextLabel={"next"}

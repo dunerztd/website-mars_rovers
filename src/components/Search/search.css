@@ -1,14 +1,14 @@
 .search-bar {
   border: none;
   outline: none;
-  background-color: white;
+  background-color: transparent;
 }
 
 @media all and (max-width: 600px) {
 
   .search-bar {
     width: 100%;
-    background-color: #777;
+    background-color: transparent;
     /* padding: 18px; */
     border: none;
     outline: none;
@@ -16,7 +16,7 @@
     justify-content: center;
   }
 
-  .active, .search-bar:hover {
+  .search-bar:hover {
     background-color: #ccc;
   }
 

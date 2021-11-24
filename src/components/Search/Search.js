@@ -64,7 +64,7 @@ const Search = ({ items, dateInputOnSubmit, setDateInputOnSubmit }) => {
     <div>
         <div className="search-bar" >
           <input type="date" value={dateInput} onChange={handleChange} />
-          <input type="submit" value="Submit" onClick={handleSubmit} />
+          <input type="submit" value="Search" onClick={handleSubmit} />
         </div>
       <div className="search-bar-content" >
         <SearchResults />
