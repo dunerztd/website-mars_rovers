@@ -11,6 +11,23 @@ Using the NASA Mars Rover Photos API, the user will enter a date and can retriev
   - PANCAM	(Panoramic Camera)
   - MINITES	(Miniature Thermal Emission Spectrometer (Mini-TES))
 
+Perseverance rover added and has the following cameras:
+  - EDL_RUCAM	(Rover Up-Look Camera)
+  - EDL_RDCAM	(Rover Down-Look Camera)
+  - EDL_DDCAM	(Descent Stage Down-Look Camera)
+  - EDL_PUCAM1	(Parachute Up-Look Camera A)
+  - EDL_PUCAM2	(Parachute Up-Look Camera B)
+  - NAVCAM_LEFT	(Navigation Camera - Left)
+  - NAVCAM_RIGHT	(Navigation Camera - Right)
+  - MCZ_RIGHT	(Mast Camera Zoom - Right)
+  - MCZ_LEFT	(Mast Camera Zoom - Left)
+  - FRONT_HAZCAM_LEFT_A	(Front Hazard Avoidance Camera - Left)
+  - FRONT_HAZCAM_RIGHT_A	(Front Hazard Avoidance Camera - Right)
+  - REAR_HAZCAM_LEFT	(Rear Hazard Avoidance Camera - Left)
+  - REAR_HAZCAM_RIGHT	(Rear Hazard Avoidance Camera - Right)
+  - SKYCAM	MEDA (Skycam)
+  - SHERLOC_WATSON	(SHERLOC WATSON Camera)
+
 information from the manifest
 - general information about the rover - name, landing date, status etc when person is searching (above search bar/before search is made)
 - info about searched day - sol, earth date, photos etc
@@ -54,4 +71,21 @@ SIDEBAR
 MAIN AREA
 - Reserved purely for thumbnails
 - Group thumbnails by camera
-- 10 thumbnails per page with links to next pages
+- 25 thumbnails per page with links to next pages
+
+---
+
+## Rover Pages Mockups
+
+
+### Mobile
+
+- The name of the rover (curiosity in this mockup) and arrow will appear permanently at the bottom of the screen. Clicking arrow will hide/unhide mission info and photo search.
+
+![mobile mockup](./mockups/Mobile-RoverPages.jpg)
+
+### Desktop
+
+- Mission info and photo search can be separately hidden/unhidden by clicking the appropriate arrow.
+
+![desktop mockup](./mockups/Desktop-RoverPages.jpg)
