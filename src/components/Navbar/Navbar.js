@@ -1,28 +1,26 @@
 import { NavLink } from "react-router-dom";
 
+import './navbar.css'
+import "@fontsource/roboto/700.css"
+
 const Navbar = () => {
   return (
-    <nav>
-      <NavLink to="/">
-        Home
-      </NavLink>
-      <span> | </span>
-      <NavLink to="/Curiosity">
-        Curiosity
-      </NavLink>
-      <span> | </span>
-      <NavLink to="/Opportunity">
-        Opportunity
-      </NavLink>
-      <span> | </span>
-      <NavLink to="/Spirit">
-        Spirit
-      </NavLink>
-      <span> | </span>
-      <NavLink to="/Perseverance">
-        Perseverance
-      </NavLink>
-    </nav>
+    <div className="navbar-container">
+      <nav className="navlinks">
+        <NavLink to="/Perseverance" className='nav__item'>
+          Perseverance
+        </NavLink>
+        <NavLink to="/Curiosity" className='nav__item'>
+          Curiosity
+        </NavLink>
+        <NavLink to="/Opportunity" className='nav__item'>
+          Opportunity
+        </NavLink>
+        <NavLink to="/Spirit" className='nav__item'>
+          Spirit
+        </NavLink>
+      </nav>
+    </div>
   )
 }
 

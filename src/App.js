@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Home from './pages/Home'
 import Curiosity from './pages/Curiosity'
 import Spirit from './pages/Spirit'
 import Opportunity from './pages/Opportunity'
 import Perseverance from './pages/Perseverance'
 import Navbar from './components/Navbar/Navbar'
+
+import './app.css'
 
 
 function App() {
@@ -13,7 +14,6 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route exact path="/curiosity" component={Curiosity} />
         <Route exact path="/spirit" component={Spirit} />
         <Route exact path="/opportunity" component={Opportunity} />
